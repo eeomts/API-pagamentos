@@ -16,7 +16,7 @@ return new class extends Migration {
 
             $table->string('name');
             $table->string('email')->nullable();
-            $table->string('docs', 20)->nullable();
+            $table->string('document', 20)->nullable();
             $table->string('gateway_payers_id')->nullable();
 
             $table->unique(['user_id', 'document']);
