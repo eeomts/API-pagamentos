@@ -16,7 +16,7 @@ class AuthController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:clients,email',
+            'email' => 'required|string|email|max:255|unique:users,email',
             'url' => 'required|string|max:255',
             'password' => 'required|string|min:6'
         ]);

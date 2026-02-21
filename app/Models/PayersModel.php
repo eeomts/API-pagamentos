@@ -10,7 +10,7 @@ class Payers extends Model
     use HasFactory;
 
     protected $fillable = [
-        'clients_id',
+        'user_id',
         'name',
         'email',
         'docs',
