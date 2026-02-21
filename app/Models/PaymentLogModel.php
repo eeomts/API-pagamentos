@@ -9,6 +9,8 @@ class PaymentLog extends Model
 {
     use HasFactory;
 
+    protected $table = 'payment_logs';
+
     protected $fillable = [
         'payment_id',
         'status',
@@ -17,6 +19,6 @@ class PaymentLog extends Model
 
     public function payment()
     {
-        return $this->belongsTo(Payments::class);
+        return $this->belongsTo(Payment::class);
     }
 }

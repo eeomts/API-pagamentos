@@ -5,19 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class PaymentsMethod extends Model
+class PaymentMethod extends Model
 {
     use HasFactory;
 
+    protected $table = 'payment_methods';
+
     protected $fillable = [
-        'payers_id',
+        'payer_id',
         'gateway_token',
         'brand',
         'last_four'
     ];
 
-    public function customer()
+    public function payer()
     {
-        return $this->belongsTo(Payers::class);
+        return $this->belongsTo(Payer::class);
     }
 }

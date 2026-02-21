@@ -4,14 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Enums\PaymentStatus;
 
-class Payments extends Model
+class Payment extends Model
 {
     use HasFactory;
 
+    protected $table = 'payments';
+
     protected $fillable = [
         'user_id',
-        'payers_id',
+        'payer_id',
         'gateway_payment_id',
         'amount',
         'currency',
@@ -23,6 +26,7 @@ class Payments extends Model
 
     protected $casts = [
         'amount' => 'decimal:2',
+        'status' => PaymentStatus::class,
         'paid_at' => 'datetime'
     ];
 
@@ -31,13 +35,18 @@ class Payments extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function customer()
+    public function payer()
     {
-        return $this->belongsTo(Payers::class);
+        return $this->belongsTo(Payer::class);
     }
 
-    public function logs()
+    public function paymentLogs()
     {
         return $this->hasMany(PaymentLog::class);
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
     }
 }

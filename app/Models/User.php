@@ -34,14 +34,14 @@ class User extends Authenticatable implements JWTSubject
         'password'
     ];
     
-    public function customers()
+    public function payers()
     {
-        return $this->hasMany(Payers::class);
+        return $this->hasMany(Payer::class);
     }
 
 
     public function payments()
     {
-        return $this->hasMany(Payments::class);
+        return $this->hasMany(Payment::class);
     }
 }

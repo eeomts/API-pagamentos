@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Payers extends Model
+class Payer extends Model
 {
     use HasFactory;
+
+    protected $table = 'payers';
 
     protected $fillable = [
         'user_id',
@@ -24,11 +26,11 @@ class Payers extends Model
 
     public function payments()
     {
-        return $this->hasMany(Payments::class);
+        return $this->hasMany(Payment::class);
     }
 
     public function paymentMethods()
     {
-        return $this->hasMany(PaymentsMethod::class);
+        return $this->hasMany(PaymentMethod::class);
     }
 }
