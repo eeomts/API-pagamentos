@@ -26,19 +26,16 @@ class Payments extends Model
         'paid_at' => 'datetime'
     ];
 
-    // 🔹 Pertence ao usuário
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    // 🔹 Pertence ao cliente
     public function customer()
     {
         return $this->belongsTo(Payers::class);
     }
 
-    // 🔹 Tem vários logs
     public function logs()
     {
         return $this->hasMany(PaymentLog::class);

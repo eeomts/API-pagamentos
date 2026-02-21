@@ -5,10 +5,23 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
-    use HasFactory, Notifiable;
+   use HasFactory, Notifiable;
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
+    protected $table = 'clients';
 
     protected $fillable = [
         'name',
@@ -20,14 +33,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password'
     ];
-
-    // 🔹 Um usuário tem muitos clientes
+    
     public function customers()
     {
         return $this->hasMany(Payers::class);
     }
 
-    // 🔹 Um usuário tem muitos pagamentos
+
     public function payments()
     {
         return $this->hasMany(Payments::class);

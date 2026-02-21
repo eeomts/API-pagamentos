@@ -15,7 +15,6 @@ class PaymentLog extends Model
         'message'
     ];
 
-    // 🔹 Pertence ao pagamento
     public function payment()
     {
         return $this->belongsTo(Payments::class);

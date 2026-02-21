@@ -16,7 +16,6 @@ class PaymentsMethod extends Model
         'last_four'
     ];
 
-    // 🔹 Pertence ao cliente
     public function customer()
     {
         return $this->belongsTo(Payers::class);
