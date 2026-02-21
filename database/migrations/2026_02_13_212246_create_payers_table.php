@@ -10,7 +10,7 @@ return new class extends Migration {
         Schema::create('payers', function (Blueprint $table) {
             $table->id();
             
-            $table->foreignId('users_id')
+            $table->foreignId('user_id')
                   ->constrained()
                   ->onDelete('cascade');
 
@@ -18,6 +18,9 @@ return new class extends Migration {
             $table->string('email')->nullable();
             $table->string('docs', 20)->nullable();
             $table->string('gateway_payers_id')->nullable();
+
+            $table->unique(['user_id', 'document']);
+            $table->unique(['user_id', 'email']);
 
             $table->timestamps();
         });

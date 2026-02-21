@@ -10,7 +10,7 @@ return new class extends Migration {
         Schema::create('payment_methods', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('payers_id')
+            $table->foreignId('payer_id')
                   ->constrained()
                   ->onDelete('cascade');
 

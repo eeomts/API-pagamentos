@@ -10,7 +10,7 @@ return new class extends Migration {
         Schema::create('payment_logs', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('payments_id')
+            $table->foreignId('payment_id')
                   ->constrained()
                   ->onDelete('cascade');
 

@@ -10,15 +10,17 @@ return new class extends Migration {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('users_id')
+            $table->foreignId('user_id')
                   ->constrained()
                   ->onDelete('cascade');
 
-            $table->foreignId('payers_id')
+            $table->foreignId('payer_id')
                   ->constrained()
                   ->onDelete('cascade');
 
             $table->string('gateway_payment_id')->nullable();
+            $table->string('idempotency_key')->nullable()->index();
+            $table->uuid('external_reference')->unique();
 
             $table->decimal('amount', 10, 2);
             $table->string('currency', 10)->default('BRL');
@@ -32,6 +34,8 @@ return new class extends Migration {
 
             $table->index('status');
             $table->index('gateway_payment_id');
+
+
         });
     }
 
