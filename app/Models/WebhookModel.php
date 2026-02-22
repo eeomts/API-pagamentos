@@ -11,5 +11,14 @@ class Webhook extends Model
 
     protected $table = 'webhooks';
 
+    protected $fillable = [
+        'event',
+        'payload',
+        'received_at'
     ];
+    protected $casts = [
+        'payload' => 'json',
+        'received_at' => 'datetime'
+    ];
+    
 }
